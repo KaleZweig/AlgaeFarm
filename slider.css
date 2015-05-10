@@ -1,0 +1,72 @@
+.navigation {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  
+  list-style: none;
+  background: #111;
+}
+
+li {
+  width: 200px;
+}
+
+li a {
+  display: block;
+  padding: 1em;
+  color: white;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+.site-wrap {
+  min-height: 100%;
+  min-width: 100%;
+  background-color: #212121;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+}
+
+/* Nav Trigger */
+.nav-trigger {
+    display:none;
+}
+
+label[for="nav-trigger"] {
+  /* critical positioning styles */
+  position: fixed;
+  left: 0.7vw; top: 0.7vw;
+  z-index: 2;
+  
+  /* non-critical apperance styles */
+  height: 1.6vw;
+  width: 1.6vw;
+  background-image: url("http://kalecloud.com/img/curve-menu.png");
+  background-size: contain;
+}
+
+/* Make the Magic Happen */
+.nav-trigger + label, .site-wrap {
+  transition: left 0.2s;
+}
+
+.nav-trigger:checked + label {
+  left: 215px;
+}
+
+.nav-trigger:checked ~ .site-wrap {
+  left: 200px;
+}
+
+body {overflow-x: hidden;}
+
+*,*:before,*:after{ margin:0; padding:0;}
+html, body { height: 100%; width: 100%; }
