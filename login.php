@@ -72,7 +72,7 @@ echo "<script>window.open('forum.php','_self')</script>";
  unset($_SESSION['USER']);
 }
 function get($user, $pass){
-	$cons=mysqli_connect("mysql13.000webhost.com","a4857546_admin","ModularAlgae555","a4857546_forum");
+	$cons=mysqli_connect("mysql13.000webhost.com","a4857546_admin","****","a4857546_forum");
 // Check connection
 if (mysqli_connect_errno())
   {

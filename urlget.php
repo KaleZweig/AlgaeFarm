@@ -64,8 +64,8 @@ session_start();
 echo "<h1>Thread: " . $_GET["thread"] . "</h1>";
 $thread_name=$_GET["thread"];
 
-$con=mysqli_connect("mysql13.000webhost.com","a4857546_admin","ModularAlgae555","a4857546_forum");
-$cons=mysqli_connect("mysql13.000webhost.com","a4857546_admin","ModularAlgae555","a4857546_forum");
+$con=mysqli_connect("mysql13.000webhost.com","a4857546_admin","****","a4857546_forum");
+$cons=mysqli_connect("mysql13.000webhost.com","a4857546_admin","****","a4857546_forum");
 // Check connection
 if (mysqli_connect_errno())
   {

@@ -38,7 +38,7 @@ if($_SESSION['USER']==null){
 }
 
 // Create connection
-$con=mysqli_connect("mysql13.000webhost.com","a4857546_admin","ModularAlgae555","a4857546_forum");
+$con=mysqli_connect("mysql13.000webhost.com","a4857546_admin","****","a4857546_forum");
 // Check connection
 if (mysqli_connect_errno())
   {
