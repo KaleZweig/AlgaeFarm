@@ -20,9 +20,12 @@
 
 <?php
 session_start();
+//print out user (for debugging purposes)
 echo $_SESSION['Log'].$_SESSION['USER'];
+//set username and password to a by default so I can tell if anything was entered later
 $name ="a";
 $pass ="a";
+//variable used to confirm username is new and original
 $uservalue=0;
 // Create connection
 $con=mysqli_connect("mysql13.000webhost.com","a4857546_admin","****","a4857546_forum");
@@ -33,7 +36,7 @@ if (mysqli_connect_errno())
   }else{
   	//echo "Connection successful ";
   }
-
+//function to retrieve input via post method
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
    $name = test_input($_POST["name"]);
    $pass = test_input($_POST["pass"]);
@@ -42,14 +45,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
    $email = test_input($_POST["email"]);
   
 }
+//function to filter data and escape strings exxceppt I forgot to add that Ill do it later
 function test_input($data){
    $data = trim($data);
    $data = stripslashes($data);
    $data = htmlspecialchars($data);
    return $data;
 }
+//checkk name originality function call
 get($name);
-
+//A giant if else statement that is probablby completely unnecesarity because I am already stripping special characters
 if(strpos($name,'!') !== false || strpos($name,'#') !== false ||
 strpos($name,'$') !== false || strpos($name,'%') !== false || strpos($name,'^') !== false ||
 strpos($name,'&amp') !== false || strpos($name,'*') !== false || strpos($name,'(') !== false ||
@@ -71,20 +76,24 @@ strpos($pass,'<') !== false || strpos($pass,'>') !== false || strpos($pass,',') 
 strpos($pass,'|') !== false || strpos($pass,'{') !== false || strpos($pass,'}') !== false ||
 strpos($pass,'[') !== false || strpos($pass,']') !== false || strpos($pass,'\\') !== false) {
 	echo'<h1>do not use that character</h1>';
-}elseif(strlen($pass)<5 && strlen($pass)!=1){
+}elseif(strlen($pass)<5 && strlen($pass)!=1){ //make sure password is long enough
 	echo"<h1>Password is to cshort</h1>";
-}elseif(strlen($name)<4 && strlen($name)!=1){
+}elseif(strlen($name)<4 && strlen($name)!=1){ //make sure username is long enough
 	echo"<h1>Username is to short</h1>";
-}else if($uservalue == 1 && $uservalue!= 'a'){
+}else if($uservalue == 1 && $uservalue!= 'a'){ //make sure username is new (variable returned from "get" function)
  echo "Username already exists";
 }else if($name == 'a' && $pass == 'a'){
-
+//don't insert anything if nothing is entered probably could use null rather than a but it works fine
 }else{
+	//this is the actual insertion of data
 mysqli_query($con,"INSERT INTO UserData (username, password, firstname, lastname, email) VALUES ('".$name."','".$pass."','".$first."','".$last."','".$email."')");
+//open new page after query
 echo "<script>window.open('login.php','_self')</script>";
 }
-mysqli_close($con);
+mysqli_close($con); // close connection
+//function to check if username is original
 function get($user){
+	//new conneection
 	$cons=mysqli_connect("mysql13.000webhost.com","a4857546_admin","****",
 		"a4857546_forum");
 // Check connection
@@ -94,6 +103,7 @@ if (mysqli_connect_errno())
   }else{
   //	echo 'connection successful';
   }
+  //graab data from table
 $results = mysqli_query($cons,"SELECT * FROM UserData WHERE UserName='".$user."' ");
 /*
 while($row = mysqli_fetch_array($results)){
@@ -101,6 +111,7 @@ while($row = mysqli_fetch_array($results)){
   echo $row['UserName'] . " " . $row['Password'] ;
     }
 echo"Done";*/
+//if any results than name is taken otherwise the name is new
 if (mysqli_num_rows($results) >= 1){
      // echo "Username already exists";
 	global $uservalue;
@@ -109,7 +120,7 @@ if (mysqli_num_rows($results) >= 1){
   	//echo"Username Valid";
 	
   }
-mysqli_close($cons);
+mysqli_close($cons); //close connection
 }
 ?>
 
@@ -117,7 +128,7 @@ mysqli_close($cons);
 <form action="register.php" method="post">
 <h1>Register</h1>
 <div>
-				<input type="text" placeholder="First Name" required="true" name="first" />
+				<input type="text" placeholder="First Name" required="true" name="first" /> <!-- just noting the name parameter is what is used to fetch data in the php -->
 			</div>
 			<div>
 				<input type="text" placeholder="Last Name" required="true" name="last" />
