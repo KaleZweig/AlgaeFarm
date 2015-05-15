@@ -74,7 +74,7 @@ if (mysqli_connect_errno())
     //echo "<h2>Connection successful</h2>";
   }
 
-$sqls = "SELECT * FROM Threads";
+$sqls = "SELECT * FROM Threads WHERE thread_title = '$thread_name'";
 $results = mysqli_query($cons, $sqls);
 if (mysqli_num_rows($results) > 0) {
     // output data of each row
