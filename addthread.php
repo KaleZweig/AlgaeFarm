@@ -54,6 +54,7 @@ function test_input($data){
    $data = trim($data);
    $data = stripslashes($data);
    $data = htmlspecialchars($data);
+   $data = addslashes($data);
    return $data;
 }
 
@@ -101,11 +102,12 @@ mysqli_close($cons);
 	?>
 
 <ul class="navigation">
-	<li class="nav-item"><a href="#">Forum</a></li>
-	<li class="nav-item"><a href="#">Information</a></li>
-	<li class="nav-item"><a href="#">Design</a></li>
-	<li class="nav-item"><a href="#">Algae</a></li>
-	<li class="nav-item"><a href="#">Petrolium</a></li>
+  <li class="nav-item"><a href="index.php">Home</a></li>
+  <li class="nav-item"><a href="forum.php">Forum</a></li>
+  <li class="nav-item"><a href="info.html">Information</a></li>
+  <li class="nav-item"><a href="design.html">Design</a></li>
+  <li class="nav-item"><a href="algae.html">Algae</a></li>
+  <li class="nav-item"><a href="oil.html">Petrolium</a></li>
 </ul>
 
 <input type="checkbox" id="nav-trigger" class="nav-trigger" />
